@@ -11,7 +11,9 @@ ENV NEXUS_USER="nexus" \
 
 RUN groupadd -r --gid "$NEXUS_GID" "$NEXUS_GROUP"
 RUN useradd -r --uid "$NEXUS_UID" --gid "$NEXUS_GID" "$NEXUS_USER"
-RUN curl -L $NEXUS_DIST_URL --output /tmp/nexus.tar.gz; \
+RUN apt-get -y update; \
+    apt-get -y install curl; \
+    curl -L $NEXUS_DIST_URL --output /tmp/nexus.tar.gz; \
     tar -C /tmp --extract --file /tmp/nexus.tar.gz; \
     rm /tmp/nexus.tar.gz; \
     mv /tmp/nexus-* /opt/nexus; \
