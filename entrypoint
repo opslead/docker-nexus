@@ -1,7 +1,5 @@
 #!/bin/bash
 
-cd /opt/nexus
-
 exec java \
     -server \
     $JAVA_ARGS \
